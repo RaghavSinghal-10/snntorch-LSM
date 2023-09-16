@@ -20,5 +20,6 @@ class LSM(nn.Module):
             curr = self.fc1(x[step])
             spk, syn, mem = self.lsm(curr, spk, syn, mem)
             spk_rec.append(spk)
+            print(abs(mem).max())
         spk_rec_out = torch.stack(spk_rec)
         return spk_rec_out
