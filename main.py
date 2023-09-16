@@ -8,7 +8,7 @@ import numpy as np
 from sklearn import linear_model
 import time
 
-from lsm_weight_definitions import initWeights1
+from lsm_weight_definitions import *
 from lsm_models import LSM
 
 if __name__ == "__main__":
@@ -29,8 +29,8 @@ if __name__ == "__main__":
     testloader = DataLoader(cached_testset, batch_size=batch_size, collate_fn=tonic.collation.PadTensors(batch_first=False))
 
     #Set device
-    device = torch.device("mps") if torch.backends.mps.is_available() else torch.device("cpu")
-    #device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
+    #device = torch.device("mps") if torch.backends.mps.is_available() else torch.device("cpu")
+    device = torch.device("cuda:6") if torch.cuda.is_available() else torch.device("cpu")
     print(device)
 
     data, targets = next(iter(trainloader))
